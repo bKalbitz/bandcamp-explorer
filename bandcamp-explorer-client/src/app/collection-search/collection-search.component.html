@@ -1,0 +1,12 @@
+<div class="bc-ce-app">
+    <h1>Search your bandcamp collection</h1>
+    <p>Enter your collection URL.</p>
+    <div class="bc-ce-flex-row">
+        <div class="bc-ce-flex-row-entry">
+            <input type="text" pInputText [(ngModel)]="collectioName"  />
+        </div>
+        <div class="bc-ce-flex-row-entry">
+            <p-button label="search" (onClick)="search()"/>
+        </div>
+    </div>
+</div>

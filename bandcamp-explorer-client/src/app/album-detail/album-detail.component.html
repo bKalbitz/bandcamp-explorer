@@ -1,0 +1,55 @@
+
+<div class="bc-ce-album-detail">
+    <h3>{{albumData?.title}}</h3>
+    <div calss="bc-ce-album-detail-image">
+        <img [src]="albumData?.artUrl" alt="Album cover: {{albumData?.title}}" />
+    </div>
+    <div class="bc-ce-flex-row">
+        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-album-flex-label">Artist</div>
+        <div class="bc-ce-flex-row-entry">{{albumData?.artist}}</div>
+    </div>
+    <div class="bc-ce-flex-row">
+        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-album-flex-label">URls</div>
+        <div>
+            <div class="bc-ce-flex-column">
+                @for (url of albumData?.urls; track url) {
+                    <div class="bc-ce-flex-column-entry"><a [href]="url" target="_blank">{{url}}</a></div>
+                }
+            </div>
+        </div>
+    </div>
+    @if (dataReady) {
+         <div class="bc-ce-flex-row">
+            <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">In collections</div>
+            <div class="bc-ce-flex-row-entry">
+                <div class="bc-ce-flex-column">
+                    @for (url of albumDetails?.collectionUrls; track url) {
+                        <div class="bc-ce-flex-column-entry"><a [href]="url" target="_blank">{{url}}</a></div>
+                    }
+                    <div class="bc-ce-flex-column-entry"><p-button label="See recommendations" (onClick)="intersection()"/></div>
+                </div>
+            </div>
+         </div>
+         <div class="bc-ce-flex-row">
+            <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Tags</div>
+            @for (tag of albumDetails?.tags; track tag) {
+                <div class="bc-ce-flex-row-entry bc-ce-tag">{{tag}}</div>
+            }
+            <div class="bc-ce-flex-row-entry bc-ce-searh-by-tag">
+                <a [href]="tagSearchLink" target="_blank">Find more with this tags!</a>
+            </div>
+         </div>
+         <div class="bc-ce-flex-row">
+             <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Recommended Albums</div>
+              @for (Recommended of albumDetails?.recomendetAlbums; track Recommended.url) {
+                <div class="bc-ce-flex-row-entry bc-ce-album-detail-Recommended">
+                    <a [href]="Recommended.url"  target="_blank">
+                        <img [src]="Recommended?.artUrl" alt="Album cover" />
+                    </a>
+                </div>
+            }
+         </div>
+    } @else {
+        <p-progress-spinner ariaLabel="loading" />
+    }
+</div>

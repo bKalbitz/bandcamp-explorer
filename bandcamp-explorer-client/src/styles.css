@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+.bc-ce-flex-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+
+.bc-ce-flex-row-entry {
+  padding: 4px;
+}
+
+.bc-ce-flex-row-entry-20 {
+  flex-basis: 20%;
+}
+
+.bc-ce-label {
+  font-weight: bold;
+}
+
+.bc-ce-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bc-ce-flex-column-entry {
+  padding: 4px;
+}
+
+.bc-ce-tag {
+  border: 1px solid;
+  border-radius: 4px;
+  margin-right: 4px;
+}

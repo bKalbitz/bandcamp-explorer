@@ -1,0 +1,34 @@
+<div class="bc-ce-app">
+    <div class="bc-ce-nav">
+        <p-button  icon="pi pi-chevron-left" label="Back to collection overview" (onClick)="back()"/>
+    </div>
+    <h1>Collection Intersection</h1>
+    @if (dataReady) {
+        <div class="bc-ce-flex-row">
+        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Album:</div>
+        <div class="bc-ce-flex-row-entry bc-ce-label">In Collections:</div>
+        </div>
+        @for (entry of entries; track entry.album.artUrl) {
+            <div class="bc-ce-flex-row bc-ce-intersection-entry">
+                <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20">
+                    <a [href]="entry.album.urls[0]" target="_blank">
+                     <img [src]="entry.album.artUrl" alt="Album cover" />
+                     <p>{{entry.album.title}}</p>
+                     <p>by {{entry.album.artist}}</p>
+                    </a>
+                </div>
+                <div class="bc-ce-flex-row-entry">
+                    <div class="bc-ce-flex-column">
+                    @for (collectionName of entry.inCollections; track collectionName) {
+                        <div class="bc-ce-flex-column-entry">
+                            <a [href]="`https://bandcamp.com/${collectionName}`" target="_blank">{{collectionName}}</a>
+                        </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        }
+    } @else {
+        <p-progress-spinner ariaLabel="loading" />
+    }
+</div>
