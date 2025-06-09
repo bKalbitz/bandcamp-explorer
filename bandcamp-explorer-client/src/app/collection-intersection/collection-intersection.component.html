@@ -3,10 +3,14 @@
         <p-button  icon="pi pi-chevron-left" label="Back to collection overview" (onClick)="back()"/>
     </div>
     <h1>Collection Intersection</h1>
+    <div class="bc-ce-flex-row">
+        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Loading progress:</div>
+        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-80"><p-progressbar [value]="loadingState" /></div>
+    </div>
     @if (dataReady) {
         <div class="bc-ce-flex-row">
-        <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Album:</div>
-        <div class="bc-ce-flex-row-entry bc-ce-label">In Collections:</div>
+            <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Album:</div>
+            <div class="bc-ce-flex-row-entry bc-ce-label">In Collections:</div>
         </div>
         @for (entry of entries; track entry.album.artUrl) {
             <div class="bc-ce-flex-row bc-ce-intersection-entry">

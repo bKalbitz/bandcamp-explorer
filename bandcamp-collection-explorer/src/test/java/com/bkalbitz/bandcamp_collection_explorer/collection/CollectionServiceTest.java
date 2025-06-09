@@ -1,7 +1,6 @@
 package com.bkalbitz.bandcamp_collection_explorer.collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -14,8 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.bkalbitz.bandcamp_collection_explorer.collection.crawler.BCRestEndpoint;
 import com.bkalbitz.bandcamp_collection_explorer.collection.crawler.BCWebCrawler;
-import com.bkalbitz.bandcamp_collection_explorer.collection.data.AlbumDTO;
-import com.bkalbitz.bandcamp_collection_explorer.collection.data.ArtistDTO;
 import com.bkalbitz.bandcamp_collection_explorer.collection.data.CollectionBuilder;
 import com.bkalbitz.bandcamp_collection_explorer.collection.data.CollectionDTO;
 import com.bkalbitz.bandcamp_collection_explorer.collection.persistance.AlbumEntity;
@@ -89,57 +86,5 @@ class CollectionServiceTest {
     Mockito.when(collectionBuilder.build(Mockito.any(), Mockito.any())).thenReturn(result);
     assertEquals(result, underTest.updateCollection("test", null));
 
-  }
-
-  @Test
-  public void getIntersection() {
-    Mockito.when(collectionRepository.existsById("test1")).thenReturn(true);
-    CollectionEntity collectionEntity1 = Mockito.mock(CollectionEntity.class);
-    List<AlbumEntity> albumEntities1 = List.of();
-    Mockito.when(collectionRepository.getReferenceById("test1")).thenReturn(collectionEntity1);
-    Mockito.when(albumRepository.findAllByCollection("test1")).thenReturn(albumEntities1);
-    CollectionDTO result1 = Mockito.mock(CollectionDTO.class);
-    Mockito.when(collectionBuilder.build(Mockito.eq(collectionEntity1), Mockito.eq(albumEntities1)))
-        .thenReturn(result1);
-
-    Mockito.when(collectionRepository.existsById("test2")).thenReturn(true);
-    CollectionEntity collectionEntity2 = Mockito.mock(CollectionEntity.class);
-    List<AlbumEntity> albumEntities2 = List.of();
-    Mockito.when(collectionRepository.getReferenceById("test2")).thenReturn(collectionEntity2);
-    Mockito.when(albumRepository.findAllByCollection("test2")).thenReturn(albumEntities2);
-    CollectionDTO result2 = Mockito.mock(CollectionDTO.class);
-    Mockito.when(collectionBuilder.build(Mockito.eq(collectionEntity2), Mockito.eq(albumEntities2)))
-        .thenReturn(result2);
-
-    ArtistDTO result1Artist1 = Mockito.mock(ArtistDTO.class);
-    ArtistDTO result2Artist1 = Mockito.mock(ArtistDTO.class);
-    AlbumDTO artist1Album1 = new AlbumDTO();
-    artist1Album1.setArtist("artist1");
-    artist1Album1.setTitle("album1");
-    AlbumDTO artist1Album2 = new AlbumDTO();
-    artist1Album2.setArtist("artist1");
-    artist1Album2.setTitle("album2");
-    Mockito.when(result1Artist1.getAlbums()).thenReturn(List.of(artist1Album1));
-    Mockito.when(result2Artist1.getAlbums()).thenReturn(List.of(artist1Album1, artist1Album2));
-    ArtistDTO result1Artist2 = Mockito.mock(ArtistDTO.class);
-    ArtistDTO result2Artist2 = Mockito.mock(ArtistDTO.class);
-    AlbumDTO artist2Album1 = new AlbumDTO();
-    artist2Album1.setArtist("artist2");
-    artist2Album1.setTitle("album1");
-    AlbumDTO artist2Album2 = new AlbumDTO();
-    artist2Album2.setArtist("artist2");
-    artist2Album2.setTitle("album2");
-    Mockito.when(result1Artist2.getAlbums()).thenReturn(List.of(artist2Album1, artist2Album2));
-    Mockito.when(result2Artist2.getAlbums()).thenReturn(List.of(artist2Album2));
-
-    Mockito.when(result1.getArtists()).thenReturn(List.of(result1Artist1, result1Artist2));
-    Mockito.when(result2.getArtists()).thenReturn(List.of(result2Artist1, result2Artist2));
-
-    IntersectionDTO result = underTest.getIntersection(new String[] { "test1", "test2" });
-    assertEquals(2, result.getEntries().size());
-    for (IntersectionEntryDTO entry : result.getEntries()) {
-      assertTrue(entry.getAlbum().equals(artist1Album1) || entry.getAlbum().equals(artist2Album2));
-      assertEquals(2, entry.getInCollections().size());
-    }
   }
 }

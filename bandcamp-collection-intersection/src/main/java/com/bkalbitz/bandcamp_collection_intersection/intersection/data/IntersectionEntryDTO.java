@@ -1,8 +1,6 @@
-package com.bkalbitz.bandcamp_collection_explorer.collection;
+package com.bkalbitz.bandcamp_collection_intersection.intersection.data;
 
 import java.util.List;
-
-import com.bkalbitz.bandcamp_collection_explorer.collection.data.AlbumDTO;
 
 public class IntersectionEntryDTO {
   private AlbumDTO album;

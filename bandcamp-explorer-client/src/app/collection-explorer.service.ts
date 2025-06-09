@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CollectionData, CollectionIntersection } from './collection-data';
+import { CollectionData, CollectionIntersection, CollectionIntersectionLoadingStarted, CollectionIntersectionLoadingState } from './collection-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionExplorerService {
-  url = 'http://localhost:8080/api/collection';
-  urlIntersection = 'http://localhost:8080/api/collection-intersection?name=';
+  host = 'http://localhost:8080';
+  url =  `${this.host}/api/collection`;
 
   constructor() { }
 
@@ -20,9 +20,4 @@ export class CollectionExplorerService {
     return await data.json() ?? {};
   }
 
-  async getIntersection(names: string[]): Promise<CollectionIntersection>{
-    let endpoint = `${this.urlIntersection}${names.join('&name=')}`;
-    const data = await fetch(endpoint);
-    return await data.json() ?? {};
-  }
 }

@@ -3,10 +3,7 @@ package com.bkalbitz.bandcamp_collection_explorer.collection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.bkalbitz.bandcamp_collection_explorer.collection.crawler.BCRestEndpoint;
 import com.bkalbitz.bandcamp_collection_explorer.collection.crawler.BCWebCrawler;
-import com.bkalbitz.bandcamp_collection_explorer.collection.data.AlbumDTO;
-import com.bkalbitz.bandcamp_collection_explorer.collection.data.ArtistDTO;
 import com.bkalbitz.bandcamp_collection_explorer.collection.data.CollectionBuilder;
 import com.bkalbitz.bandcamp_collection_explorer.collection.data.CollectionDTO;
 import com.bkalbitz.bandcamp_collection_explorer.collection.persistance.AlbumEntity;
@@ -135,27 +130,4 @@ public class CollectionService {
     Collection<AlbumEntity> albumEntities = albumRepository.findAllByCollection(name);
     return collectionBuilder.build(collectionEntity, albumEntities);
   }
-
-  public IntersectionDTO getIntersection(String[] names) {
-    Map<AlbumDTO, List<String>> collectionMap = new HashMap<>(names.length * 100);
-    for (String name : names) {
-      CollectionDTO collection = getCollection(name);
-      if (collection != null) {
-        for (ArtistDTO arist : collection.getArtists()) {
-          for (AlbumDTO album : arist.getAlbums()) {
-            if (!collectionMap.containsKey(album)) {
-              collectionMap.put(album, new LinkedList<String>());
-            }
-            collectionMap.get(album).add(name);
-          }
-        }
-      }
-    }
-    List<IntersectionEntryDTO> entries = collectionMap.entrySet().stream().filter(e -> e.getValue().size() > 1)
-        .sorted((e1, e2) -> Integer.compare(e2.getValue().size(), e1.getValue().size()))
-        .map(e -> new IntersectionEntryDTO(e.getKey(), e.getValue())).toList();
-
-    return new IntersectionDTO(entries);
-  }
-
 }

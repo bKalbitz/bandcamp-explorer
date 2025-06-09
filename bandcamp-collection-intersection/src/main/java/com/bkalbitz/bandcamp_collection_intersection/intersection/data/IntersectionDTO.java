@@ -1,4 +1,4 @@
-package com.bkalbitz.bandcamp_collection_explorer.collection;
+package com.bkalbitz.bandcamp_collection_intersection.intersection.data;
 
 import java.util.List;
 
