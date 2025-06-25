@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class ArtistDTOTest {
 
   @Test
-  public void testAddAlbum() {
+  void testAddAlbum() {
     ArtistDTO underTest = new ArtistDTO("artist");
     assertEquals("artist", underTest.getName());
     assertTrue(underTest.getAlbums().isEmpty());

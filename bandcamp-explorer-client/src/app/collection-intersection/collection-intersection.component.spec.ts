@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CollectionIntersectionComponent } from './collection-intersection.component';
+import { provideRouter } from '@angular/router';
 
 describe('CollectionIntersectionComponent', () => {
   let component: CollectionIntersectionComponent;
@@ -8,7 +9,8 @@ describe('CollectionIntersectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CollectionIntersectionComponent]
+      imports: [CollectionIntersectionComponent],
+      providers: [provideRouter([])],
     })
     .compileComponents();
 

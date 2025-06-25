@@ -13,4 +13,9 @@ describe('NavigationDataService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should register and load state', () => {
+    service.registerState('state');
+    expect(service.getCurrentState().data).toEqual('state');
+  });
 });

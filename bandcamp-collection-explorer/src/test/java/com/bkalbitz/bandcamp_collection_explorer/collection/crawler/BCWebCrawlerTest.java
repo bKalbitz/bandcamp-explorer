@@ -18,7 +18,7 @@ class BCWebCrawlerTest {
   private static final String WEBSITE_HTML = "...whatever htmlcode id=\"follow-unfollow_fanId\" ...whatever html code";
 
   @Test
-  public void parseFanId() throws IOException, InterruptedException {
+  void parseFanId() throws IOException, InterruptedException {
     try (MockedStatic<HttpClient> staticmock = Mockito.mockStatic(HttpClient.class)) {
       HttpClient httpClient = Mockito.mock(HttpClient.class);
       staticmock.when(HttpClient::newHttpClient).thenReturn(httpClient);

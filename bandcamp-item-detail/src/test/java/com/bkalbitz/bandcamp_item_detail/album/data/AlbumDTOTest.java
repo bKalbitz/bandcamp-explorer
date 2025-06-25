@@ -14,7 +14,7 @@ import com.bkalbitz.bandcamp_item_detail.album.persistance.RecommendationId;
 class AlbumDTOTest {
 
   @Test
-  public void createByEntities() {
+  void createByEntities() {
     RecommendationEnitity enitity1 = new RecommendationEnitity(new RecommendationId("forAlbumUrl1", "albumUrl1"),
         "artUrl1");
     RecommendationEnitity enitity2 = new RecommendationEnitity(new RecommendationId("forAlbumUrl2", "albumUrl2"),

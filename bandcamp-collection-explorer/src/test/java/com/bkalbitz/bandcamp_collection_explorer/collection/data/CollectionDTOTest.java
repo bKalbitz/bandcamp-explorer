@@ -11,7 +11,7 @@ import com.bkalbitz.bandcamp_collection_explorer.collection.persistance.Collecti
 class CollectionDTOTest {
 
   @Test
-  public void testCreateFromEntity() {
+  void testCreateFromEntity() {
     CollectionEntity entity = new CollectionEntity();
     entity.setFanId("fanId");
     entity.setName("name");

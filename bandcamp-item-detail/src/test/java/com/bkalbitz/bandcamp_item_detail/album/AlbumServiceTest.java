@@ -31,7 +31,7 @@ class AlbumServiceTest {
   private AlbumService underTest;
 
   @Test
-  public void getAlbum_persisted() {
+  void getAlbum_persisted() {
     Mockito.when(albumRepository.existsById("test")).thenReturn(true);
 
     RecommendationEnitity enitity1 = new RecommendationEnitity(new RecommendationId("forAlbumUrl1", "albumUrl1"),

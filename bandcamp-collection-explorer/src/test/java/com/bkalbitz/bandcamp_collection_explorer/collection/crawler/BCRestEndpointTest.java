@@ -41,7 +41,7 @@ public class BCRestEndpointTest {
   // @formatter:on
 
   @Test
-  public void loadCollectionData() throws IOException, InterruptedException {
+  void loadCollectionData() throws IOException, InterruptedException {
     try (MockedStatic<HttpClient> staticmock = Mockito.mockStatic(HttpClient.class)) {
       HttpClient httpClient = Mockito.mock(HttpClient.class);
       staticmock.when(HttpClient::newHttpClient).thenReturn(httpClient);
