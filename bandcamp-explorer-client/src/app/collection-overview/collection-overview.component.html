@@ -2,9 +2,9 @@
     <div class="bc-ce-nav">
         <p-button  icon="pi pi-chevron-left" label="Search another collection" (onClick)="back()"/>
     </div>
-    <h1>Your collection:</h1>
-    <p>{{artistCount}} atrists and {{albumCount}} albums found.</p>
-    <p>Missing something? Complete your collection by searching for an artist or album:</p>
+    <h1 class="bc-ce-headline bc-ce-healdine-h1">Your collection:</h1>
+    <p class="bc-ce-text">{{artistCount}} atrists and {{albumCount}} albums found.</p>
+    <p class="bc-ce-text">Missing something? Complete your collection by searching for an artist or album:</p>
     <div class="bc-ce-flex-row">
         <div class="bc-ce-flex-row-entry">
             <input type="text" pInputText [(ngModel)]="apiSearch"  />

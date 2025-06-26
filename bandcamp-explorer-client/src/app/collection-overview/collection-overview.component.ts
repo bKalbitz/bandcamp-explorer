@@ -101,8 +101,8 @@ export class CollectionOverviewComponent implements OnInit  {
 
   private albumsToTreeNode(albums: CollectionAlbum[], parent: TreeNode): TreeNode[] {
     const result: TreeNode[] = [];
-    this.albumCount++;
     for(const album of albums) {
+      this.albumCount++;
       result.push({
         key: `artist-${album.artist}-album-${album.title}`,
         type: "album",
