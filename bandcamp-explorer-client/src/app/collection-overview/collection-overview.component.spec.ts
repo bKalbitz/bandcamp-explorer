@@ -117,4 +117,60 @@ describe('CollectionOverviewComponent', () => {
     expect(p).toBeTruthy();
     expect(p.nativeElement.innerText).toBe('2 atrists and 3 albums found.');
   });
+
+  it('should have collection tree node', () => {
+    fixture.detectChanges();
+    const collectionNode = fixture.debugElement.query(By.css('li[data-id="collection-test"]'));
+    expect(collectionNode).toBeTruthy();
+    expect(collectionNode.nativeElement.innerText).toBe('test');
+  });
+
+  it('should have 2 artist nodes after clicking the collection node', () => {
+    fixture.detectChanges();
+    const collectionNode = fixture.debugElement.query(By.css('li[data-id="collection-test"]'));
+    expect(collectionNode).toBeTruthy();
+    let aristNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-1"]'));
+    expect(aristNode).toBeFalsy();
+    collectionNode.query(By.css('button')).triggerEventHandler('click');
+    fixture.detectChanges();
+    aristNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-1"]'));
+    expect(aristNode).toBeTruthy();
+    expect(aristNode.nativeElement.innerText).toBe('artist-1');
+    aristNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-2"]'));
+    expect(aristNode).toBeTruthy();
+    expect(aristNode.nativeElement.innerText).toBe('artist-2');
+  });
+
+  it('arist 1 should have 2 albums', () => {
+    fixture.detectChanges();
+    const collectionNode = fixture.debugElement.query(By.css('li[data-id="collection-test"]'));
+    expect(collectionNode).toBeTruthy();
+    collectionNode.query(By.css('button')).triggerEventHandler('click');
+    fixture.detectChanges();
+    const aristNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-1"]'));
+    expect(aristNode).toBeTruthy();
+    aristNode.query(By.css('button')).triggerEventHandler('click');
+    fixture.detectChanges();
+    let albumNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-1-album-album-1"]'));
+    expect(albumNode).toBeTruthy();
+    expect(albumNode.nativeElement.innerText).toBe('album-1');
+    albumNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-1-album-album-2"]'));
+    expect(albumNode).toBeTruthy();
+    expect(albumNode.nativeElement.innerText).toBe('album-2');
+  });
+
+    it('arist 2 should have 1 albums', () => {
+    fixture.detectChanges();
+    const collectionNode = fixture.debugElement.query(By.css('li[data-id="collection-test"]'));
+    expect(collectionNode).toBeTruthy();
+    collectionNode.query(By.css('button')).triggerEventHandler('click');
+    fixture.detectChanges();
+    const aristNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-2"]'));
+    expect(aristNode).toBeTruthy();
+    aristNode.query(By.css('button')).triggerEventHandler('click');
+    fixture.detectChanges();
+    let albumNode = fixture.debugElement.query(By.css('li[data-id="artist-artist-2-album-album-1"]'));
+    expect(albumNode).toBeTruthy();
+    expect(albumNode.nativeElement.innerText).toBe('album-1');
+  });
 });
