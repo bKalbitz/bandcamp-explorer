@@ -5,7 +5,6 @@ import { ActivatedRoute, provideRouter } from '@angular/router';
 import { routes } from '../app.routes';
 import { By } from '@angular/platform-browser';
 import { CollectionExplorerService } from '../collection-explorer.service';
-import { of } from 'rxjs';
 
 describe('CollectionOverviewComponent', () => {
   let component: CollectionOverviewComponent;

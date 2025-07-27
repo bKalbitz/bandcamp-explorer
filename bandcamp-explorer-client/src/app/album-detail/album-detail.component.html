@@ -1,14 +1,14 @@
 
 <div class="bc-ce-album-detail">
-    <h3>{{albumData?.title}}</h3>
-    <div calss="bc-ce-album-detail-image">
+    <h3 class="bc-ce-headline bc-ce-healdine-h3">{{albumData?.title}}</h3>
+    <div class="bc-ce-album-detail-image">
         <img [src]="albumData?.artUrl" alt="Album cover: {{albumData?.title}}" />
     </div>
-    <div class="bc-ce-flex-row">
+    <div class="bc-ce-album-detail-artist bc-ce-flex-row">
         <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-album-flex-label">Artist</div>
-        <div class="bc-ce-flex-row-entry">{{albumData?.artist}}</div>
+        <div class=" bc-ce-flex-row-entry">{{albumData?.artist}}</div>
     </div>
-    <div class="bc-ce-flex-row">
+    <div class="bc-ce-album-detail-urls bc-ce-flex-row">
         <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-album-flex-label">URls</div>
         <div>
             <div class="bc-ce-flex-column">
@@ -19,7 +19,7 @@
         </div>
     </div>
     @if (dataReady) {
-         <div class="bc-ce-flex-row">
+         <div class="bc-ce-album-detail-collections bc-ce-flex-row">
             <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">In collections</div>
             <div class="bc-ce-flex-row-entry">
                 <div class="bc-ce-flex-column">
@@ -30,7 +30,7 @@
                 </div>
             </div>
          </div>
-         <div class="bc-ce-flex-row">
+         <div class="bc-ce-album-detail-tags bc-ce-flex-row">
             <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Tags</div>
             @for (tag of albumDetails?.tags; track tag) {
                 <div class="bc-ce-flex-row-entry bc-ce-tag">{{tag}}</div>
@@ -39,10 +39,10 @@
                 <a [href]="tagSearchLink" target="_blank">Find more with this tags!</a>
             </div>
          </div>
-         <div class="bc-ce-flex-row">
+         <div class="bc-ce-album-detail-recommended bc-ce-flex-row">
              <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Recommended Albums</div>
               @for (Recommended of albumDetails?.recomendetAlbums; track Recommended.url) {
-                <div class="bc-ce-flex-row-entry bc-ce-album-detail-Recommended">
+                <div class="bc-ce-flex-row-entry">
                     <a [href]="Recommended.url"  target="_blank">
                         <img [src]="Recommended?.artUrl" alt="Album cover" />
                     </a>

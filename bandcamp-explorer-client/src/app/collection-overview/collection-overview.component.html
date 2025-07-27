@@ -7,10 +7,10 @@
     <p class="bc-ce-text">Missing something? Complete your collection by searching for an artist or album:</p>
     <div class="bc-ce-flex-row">
         <div class="bc-ce-flex-row-entry">
-            <input type="text" pInputText [(ngModel)]="apiSearch"  />
+            <input id="bc-ce-collection-overview-search-input" type="text" pInputText [(ngModel)]="apiSearch"  />
         </div>
         <div class="bc-ce-flex-row-entry">
-            <p-button label="search" (onClick)="search()"/>
+            <p-button id="bc-ce-collection-overview-search-button" label="search" (onClick)="search()"/>
         </div>
     </div>
     <div class="bc-ce-flex-row">
