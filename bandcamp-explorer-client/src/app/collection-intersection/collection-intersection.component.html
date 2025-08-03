@@ -2,8 +2,8 @@
     <div class="bc-ce-nav">
         <p-button  icon="pi pi-chevron-left" label="Back to collection overview" (onClick)="back()"/>
     </div>
-    <h1>Collection Intersection</h1>
-    <div class="bc-ce-flex-row">
+    <h1 class="bc-ce-headline bc-ce-healdine-h1">Collection Intersection</h1>
+    <div class="bc-ce-intersection-progress bc-ce-flex-row">
         <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20 bc-ce-label">Loading progress:</div>
         <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-80"><p-progressbar [value]="loadingState" /></div>
     </div>
@@ -13,15 +13,15 @@
             <div class="bc-ce-flex-row-entry bc-ce-label">In Collections:</div>
         </div>
         @for (entry of entries; track entry.album.artUrl) {
-            <div class="bc-ce-flex-row bc-ce-intersection-entry">
-                <div class="bc-ce-flex-row-entry bc-ce-flex-row-entry-20">
+            <div class="bc-ce-intersection-entry bc-ce-flex-row">
+                <div class="bc-ce-intersection-entry-album bc-ce-flex-row-entry bc-ce-flex-row-entry-20">
                     <a [href]="entry.album.urls[0]" target="_blank">
                      <img [src]="entry.album.artUrl" alt="Album cover" />
                      <p>{{entry.album.title}}</p>
                      <p>by {{entry.album.artist}}</p>
                     </a>
                 </div>
-                <div class="bc-ce-flex-row-entry">
+                <div class="bc-ce-intersection-collections bc-ce-flex-row-entry">
                     <div class="bc-ce-flex-column">
                     @for (collectionName of entry.inCollections; track collectionName) {
                         <div class="bc-ce-flex-column-entry">
