@@ -1,0 +1,34 @@
+services:
+    bandcamp-collection-explorer:
+        container_name: bandcamp-collection-explorer
+        build:
+            context: bandcamp-collection-explorer
+            dockerfile: Dockerfile
+        image: bandcamp-collection-explorer
+        ports:
+            - 8080:8080
+        networks:
+            - bandcamp-explorer
+    bandcamp-item-detail:
+        container_name: bandcamp-item-detail
+        build:
+            context: bandcamp-item-detail
+            dockerfile: Dockerfile
+        image: bandcamp-item-detail
+        ports:
+            - 8081:8081
+        networks:
+            - bandcamp-explorer
+    bandcamp-collection-intersection:
+        container_name: bandcamp-collection-intersection
+        build:
+            context: bandcamp-collection-intersection
+            dockerfile: Dockerfile
+        image: bandcamp-collection-intersection
+        ports:
+            - 8082:8082
+        networks:
+            - bandcamp-explorer
+networks:
+    bandcamp-explorer:
+        driver: bridge
