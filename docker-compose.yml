@@ -29,6 +29,16 @@ services:
             - 8082:8082
         networks:
             - bandcamp-explorer
+    bandcamp-collection-client:
+        container_name: bandcamp-explorer-client
+        build:
+            context: bandcamp-explorer-client
+            dockerfile: Dockerfile
+        image: bandcamp-explorer-client
+        ports:
+            - 4200:4200
+        networks:
+            - bandcamp-explorer
 networks:
     bandcamp-explorer:
         driver: bridge
