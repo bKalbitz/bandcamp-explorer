@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "collection.service.host",
+  "type": "java.lang.String",
+  "description": "host of collection service default value is http://localhost:8080"
+}]}
