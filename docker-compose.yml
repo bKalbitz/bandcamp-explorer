@@ -1,4 +1,40 @@
 services:
+    bandcamp-collection-explorer-db:
+        container_name: bandcamp-collection-explorer-db
+        image: 'mysql:latest'
+        restart: always
+        ports:
+          - 3306:3306
+        networks:
+          - bandcamp-explorer
+        environment:
+          - 'MYSQL_PASSWORD=secret'
+          - 'MYSQL_DATABASE=collectiondb'
+          - 'MYSQL_ROOT_PASSWORD=root'
+          - 'MYSQL_USER=myuser'
+        healthcheck:
+            test: ["CMD", "mysql", "-u", "root", "-proot", "--execute", "SHOW DATABASES;"]
+            interval: 3s
+            retries: 20
+            timeout: 5s
+    bandcamp-item-detail-db:
+        container_name: bandcamp-item-detail-db
+        image: 'mysql:latest'
+        restart: always
+        ports:
+          - 3307:3306
+        networks:
+          - bandcamp-explorer
+        environment:
+          - 'MYSQL_PASSWORD=secret'
+          - 'MYSQL_DATABASE=detaildb'
+          - 'MYSQL_ROOT_PASSWORD=root'
+          - 'MYSQL_USER=myuser'
+        healthcheck:
+            test: ["CMD", "mysql", "-u", "root", "-proot", "--execute", "SHOW DATABASES;"]
+            interval: 3s
+            retries: 20
+            timeout: 5s
     bandcamp-collection-explorer:
         container_name: bandcamp-collection-explorer
         build:
@@ -7,6 +43,9 @@ services:
         image: bandcamp-collection-explorer
         ports:
             - 8080:8080
+        depends_on:
+            bandcamp-collection-explorer-db:
+                condition: service_healthy
         networks:
             - bandcamp-explorer
     bandcamp-item-detail:
@@ -17,6 +56,9 @@ services:
         image: bandcamp-item-detail
         ports:
             - 8081:8081
+        depends_on:
+            bandcamp-item-detail-db:
+                condition: service_healthy
         networks:
             - bandcamp-explorer
     bandcamp-collection-intersection:

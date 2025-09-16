@@ -2,6 +2,7 @@ package com.bkalbitz.bandcamp_item_detail.album.persistance;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Table(name = "Album")
@@ -12,6 +13,7 @@ public class AlbumEntity {
 
   @Id
   private String url;
+  @Lob
   private String collectionUrls;
   private String tags;
 
