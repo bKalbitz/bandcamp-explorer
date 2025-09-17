@@ -8,15 +8,18 @@ services:
         networks:
           - bandcamp-explorer
         environment:
-          - 'MYSQL_PASSWORD=secret'
-          - 'MYSQL_DATABASE=collectiondb'
-          - 'MYSQL_ROOT_PASSWORD=root'
-          - 'MYSQL_USER=myuser'
+          MYSQL_PASSWORD_FILE: /run/secrets/collectiondb_password
+          MYSQL_DATABASE: collectiondb
+          MYSQL_ROOT_PASSWORD: /run/secrets/collectiondb_root_password
+          MYSQL_USER: myuser
         healthcheck:
-            test: ["CMD", "mysql", "-u", "root", "-proot", "--execute", "SHOW DATABASES;"]
+            test: mysql --user=root --password=$$(cat $$MYSQL_ROOT_PASSWORD) -e 'show databases'
             interval: 3s
             retries: 20
             timeout: 5s
+        secrets:
+            - collectiondb_password
+            - collectiondb_root_password
     bandcamp-item-detail-db:
         container_name: bandcamp-item-detail-db
         image: 'mysql:latest'
@@ -26,15 +29,18 @@ services:
         networks:
           - bandcamp-explorer
         environment:
-          - 'MYSQL_PASSWORD=secret'
-          - 'MYSQL_DATABASE=detaildb'
-          - 'MYSQL_ROOT_PASSWORD=root'
-          - 'MYSQL_USER=myuser'
+          MYSQL_PASSWORD_FILE: /run/secrets/detaildb_password
+          MYSQL_DATABASE: detaildb
+          MYSQL_ROOT_PASSWORD: /run/secrets/detaildb_root_password
+          MYSQL_USER: myuser
         healthcheck:
-            test: ["CMD", "mysql", "-u", "root", "-proot", "--execute", "SHOW DATABASES;"]
+            test: mysql --user=root --password=$$(cat $$MYSQL_ROOT_PASSWORD) -e 'show databases'
             interval: 3s
             retries: 20
             timeout: 5s
+        secrets:
+            - detaildb_password
+            - detaildb_root_password
     bandcamp-collection-explorer:
         container_name: bandcamp-collection-explorer
         build:
@@ -48,6 +54,8 @@ services:
                 condition: service_healthy
         networks:
             - bandcamp-explorer
+        secrets:
+            - collectiondb_password
     bandcamp-item-detail:
         container_name: bandcamp-item-detail
         build:
@@ -61,6 +69,8 @@ services:
                 condition: service_healthy
         networks:
             - bandcamp-explorer
+        secrets:
+            - detaildb_password
     bandcamp-collection-intersection:
         container_name: bandcamp-collection-intersection
         build:
@@ -84,3 +94,12 @@ services:
 networks:
     bandcamp-explorer:
         driver: bridge
+secrets:
+  collectiondb_password:
+    file: ./collectiondb_password.txt
+  collectiondb_root_password:
+    file: ./collectiondb_root_password.txt
+  detaildb_password:
+    file: ./detaildb_password.txt
+  detaildb_root_password:
+    file: ./detaildb_root_password.txt

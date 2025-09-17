@@ -66,3 +66,25 @@ The current provided routes are:
 * http://localhost:4200/collection-intersection?currentCollection={collection-name}&name={collection-name}&name={collection-name}&...
 	* Provides a list of the albums of the collections that could be found in more the one collection, sorted by the most common occurrence.
 	* In the future additonal filtering options are provided
+
+## How to run
+The project can be run either locally or as a Docker compose.
+
+### Run locally
+To run the project locally following dependencies are needed:
+* Angular CLI 19.2.13 or above
+* JDK 24 or above
+* Maven 3.9.9 or above
+Start the subproject from the root folder with:
+* Got to './bandcamp-collection-explorer' and run 'mvn clean package spring-boot:run'
+* Got to './bandcamp-item-detail' and run 'mvn clean package spring-boot:run'
+* Got to './bandcamp-collection-intersection' and run 'mvn clean package spring-boot:run'
+* Got to './bandcamp-explorer-client' and run 'ng serve'
+
+### Run as Docker compose
+Before building and starting the Docker container, you must create 4 files in the root dictionary that must contain the passwords needed for the MySQL databases.
+* ./collectiondb_password.txt -> Password for bandcamp-collection-explorer-db MySQL database service
+* ./collectiondb_root_password.txt -> Root password for bandcamp-collection-explorer-db MySQL database service
+* ./detaildb_password.txt -> Password for bandcamp-item-detail-db MySQL database service
+* ./detaildb_root_password.txt -> Root password for bandcamp-item-detail-db MySQL database service
+Then start the Docker compose via 'docker compose up --build' 
