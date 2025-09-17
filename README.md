@@ -41,8 +41,6 @@ In the future the album information should also be aggregated into an arist base
 ### bandcamp-collection-intersection
 ['bandcamp-collection-intersection'](bandcamp-collection-intersection)  
   
-### bandcamp-explorer-client
-['bandcamp-explorer-client'](bandcamp-explorer-client)  
 Based on ['Spring Boot'](https://spring.io/projects/spring-boot).  
 
 Provides one REST Endpoint by now: 
@@ -58,6 +56,8 @@ Provides one REST Endpoint by now:
 Loads the bancamp collections from the ['bandcamp-collection-explorer'](bandcamp-collection-explorer) service.  
 The processing of the data is asynchrounouse.  
 
+### bandcamp-explorer-client
+['bandcamp-explorer-client'](bandcamp-explorer-client)  
 ['Angular'](https://angular.dev/) based client. With use of ['PrimeNg'](https://primeng.org/) components.  
 
 The current provided routes are:  
