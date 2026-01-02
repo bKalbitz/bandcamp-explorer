@@ -65,14 +65,19 @@ The current provided routes are:
 	* Landing page
 	* Provides a search field where the Bandcamp collection URL, like https://bandcamp.com/{collection-name}, can be entered.
 	* Redirects then to the collection overview
+![landing page](screenshots/landing-page.jpg)
+
 * http://localhost:4200/collection/{collection-name}
 	* Collection overview
 	* Displays the collection as tree with nodes collection > artist > album
 	* Provides album details on selection
 	* From here a link is provided to the collection intersection for all collections that's owning the album.
+![collection view](screenshots/collection-view.jpg)
+	
 * http://localhost:4200/collection-intersection?currentCollection={collection-name}&name={collection-name}&name={collection-name}&...
 	* Provides a list of the albums of the collections that could be found in more the one collection, sorted by the most common occurrence.
 	* In the future additional filtering options are provided
+![collection intersection](screenshots/collection-intersection.jpg)
 
 ## How to run
 The project can be run either locally or as a Docker compose.
@@ -97,3 +102,5 @@ Before building and starting the Docker container, you must create 4 files in th
 * ./detaildb_root_password.txt -> Root password for bandcamp-item-detail-db MySQL database service
 
 Then start the Docker compose via 'docker compose up --build' 
+
+
